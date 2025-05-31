@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MUSIC FESTIVAL</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>MUSIC FESTIVAL</h1>
+        <div class="hamburger-menu" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </header>
+      
+  <main>
+    <section>
+      <div id="filters" class="filter-container">
+        <button class="filter-button" onclick="filterArtists('genre', 'Hip-hop')">Hip-hop</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'Rock')">Rock</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'Pop')">Pop</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'Jazz')">Jazz</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'Indie')">Indie</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'R&B')">R&B</button>
+        <button class="filter-button" onclick="filterArtists('genre', 'Metal')">Metal</button>
+        <button class="filter-button reset" onclick="resetFilters()">Show All</button>
+      </div>
+
+      <div id="content">Loading information...</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Music Festival. Organized by the City of Stockholm. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
