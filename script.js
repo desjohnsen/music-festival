@@ -5,16 +5,7 @@ function toggleMenu() {
 
 const fetchData = async () => {
   try {
-    const baseUrl = "https://cdn.contentful.com/spaces/";
-    const SPACE_ID = localStorage.getItem("space_id");
-    const ACCESS_TOKEN = localStorage.getItem("access_token");
-
-    if (!SPACE_ID || !ACCESS_TOKEN) {
-      throw new Error("API keys are missing in localStorage.");
-    }
-
-    const apiURL = `${baseUrl}${SPACE_ID}/entries?access_token=${ACCESS_TOKEN}&content_type=artist`;
-    const response = await fetch(apiURL);
+    const response = await fetch("/.netlify/functions/getContent");
 
     if (!response.ok) {
       throw new Error("HTTP error! Something went wrong with the request.");
@@ -70,7 +61,6 @@ const fetchData = async () => {
         artistCard.appendChild(stage);
         artistCard.appendChild(day);
         artistCard.appendChild(description);
-
         contentDiv.appendChild(artistCard);
       });
     };
@@ -90,7 +80,6 @@ const fetchData = async () => {
     window.resetFilters = () => {
       renderArtists(data.items);
     };
-
   } catch (error) {
     console.error("An error occurred while fetching data:", error);
     document.getElementById("content").textContent =
