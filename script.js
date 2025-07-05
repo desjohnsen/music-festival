@@ -69,9 +69,9 @@ const fetchData = async () => {
 
     window.filterArtists = (field, value) => {
       const filteredArtists = data.items.filter((artist) => {
-        const refId = artist.fields[field]?.sys.id;
-        const refValue = refId ? getReferencedData(refId, "name") : null;
-        return refValue === value || artist.fields[field] === value;
+        const refId = artist.fields[field]?.sys?.id;
+        const refName = refId ? getReferencedData(refId, "name") : null;
+        return refName === value;
       });
 
       renderArtists(filteredArtists);
@@ -80,6 +80,7 @@ const fetchData = async () => {
     window.resetFilters = () => {
       renderArtists(data.items);
     };
+
   } catch (error) {
     console.error("An error occurred while fetching data:", error);
     document.getElementById("content").textContent =
