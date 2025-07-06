@@ -53,7 +53,6 @@ const fetchData = async () => {
               const description = getReferencedData(artist.fields.day.sys.id, "description");
               const rawDate = getReferencedData(artist.fields.day.sys.id, "date");
               const formattedDate = new Date(rawDate).toLocaleDateString("en-US", {
-                weekday: "short",
                 year: "numeric",
                 month: "short",
                 day: "numeric"
