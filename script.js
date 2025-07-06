@@ -49,10 +49,17 @@ const fetchData = async () => {
 
         const day = document.createElement("p");
         const dayData = artist.fields.day
-          ? `${getReferencedData(artist.fields.day.sys.id, "description")} (${getReferencedData(
-              artist.fields.day.sys.id,
-              "date"
-            )})`
+          ? (() => {
+              const description = getReferencedData(artist.fields.day.sys.id, "description");
+              const rawDate = getReferencedData(artist.fields.day.sys.id, "date");
+              const formattedDate = new Date(rawDate).toLocaleDateString("en-US", {
+                weekday: "short",
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              });
+              return `${description} (${formattedDate})`;
+            })()
           : "Unknown day";
         day.innerHTML = `<span class="bold">Day:</span> ${dayData}`;
 
