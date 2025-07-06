@@ -17,7 +17,11 @@ const fetchData = async () => {
     contentDiv.innerHTML = "";
 
     const getReferencedData = (id, field) => {
-      const reference = data.includes?.Entry?.find((entry) => entry.sys.id === id);
+      if (!data.includes || !data.includes.Entry) {
+        return "Unknown";
+      }
+
+      const reference = data.includes.Entry.find((entry) => entry.sys.id === id);
       return reference ? reference.fields[field] : "Unknown";
     };
 
@@ -69,7 +73,7 @@ const fetchData = async () => {
 
     window.filterArtists = (field, value) => {
       const filteredArtists = data.items.filter((artist) => {
-        const refId = artist.fields[field]?.sys?.id;
+        const refId = artist?.fields?.[field]?.sys?.id;
         const refName = refId ? getReferencedData(refId, "name") : null;
         return refName === value;
       });
@@ -80,7 +84,6 @@ const fetchData = async () => {
     window.resetFilters = () => {
       renderArtists(data.items);
     };
-
   } catch (error) {
     console.error("An error occurred while fetching data:", error);
     document.getElementById("content").textContent =
